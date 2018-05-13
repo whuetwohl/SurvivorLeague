@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="48ed732c01cc4f139aa9bd9275fc080d" Name="Diagram1">
+        <EntityTypeShape EntityType="NFLLeagueModel.Player" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NFLLeagueModel.League" Width="1.5" PointX="1.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NFLLeagueModel.Season" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NFLLeagueModel.Team" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NFLLeagueModel.LeagueSeason" Width="1.5" PointX="2.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NFLLeagueModel.PlayerSelection" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NFLLeagueModel.SeasonSchedule" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
+        <AssociationConnector Association="NFLLeagueModel.FK_League_Players" ManuallyRouted="false" />
+        <AssociationConnector Association="NFLLeagueModel.FK_PlayerSelections_Players" ManuallyRouted="false" />
+        <AssociationConnector Association="NFLLeagueModel.FK_PlayerSelections_League" ManuallyRouted="false" />
+        <AssociationConnector Association="NFLLeagueModel.FK_PlayerSelections_Season" ManuallyRouted="false" />
+        <AssociationConnector Association="NFLLeagueModel.FK_SeasonSchedule_Season" ManuallyRouted="false" />
+        <AssociationConnector Association="NFLLeagueModel.FK_PlayerSelections_Teams" ManuallyRouted="false" />
+        <AssociationConnector Association="NFLLeagueModel.FK_SeasonSchedule_HomeTeams" ManuallyRouted="false" />
+        <AssociationConnector Association="NFLLeagueModel.FK_SeasonSchedule_VisitorTeams" ManuallyRouted="false" />
+        <AssociationConnector Association="NFLLeagueModel.FavoriteTeam" ManuallyRouted="false" />
+        <AssociationConnector Association="NFLLeagueModel.PlayerLeague" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="98fda376f24c4ea396e0a1a02a929f62" Name="Diagram1">
+        <EntityTypeShape EntityType="MLBLeagueModel.Player" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MLBLeagueModel.League" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MLBLeagueModel.Season" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MLBLeagueModel.Team" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MLBLeagueModel.LeagueSeason" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MLBLeagueModel.SeasonSchedule" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <AssociationConnector Association="MLBLeagueModel.FK_League_Players" ManuallyRouted="false" />
+        <AssociationConnector Association="MLBLeagueModel.FK_League_League" ManuallyRouted="false" />
+        <AssociationConnector Association="MLBLeagueModel.FK_SeasonSchedule_Season" ManuallyRouted="false" />
+        <AssociationConnector Association="MLBLeagueModel.FK_SeasonSchedule_HomeTeams" ManuallyRouted="false" />
+        <AssociationConnector Association="MLBLeagueModel.FK_SeasonSchedule_VisitorTeams" ManuallyRouted="false" />
+        <AssociationConnector Association="MLBLeagueModel.FavoriteTeam" ManuallyRouted="false" />
+        <AssociationConnector Association="MLBLeagueModel.PlayerLeague" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

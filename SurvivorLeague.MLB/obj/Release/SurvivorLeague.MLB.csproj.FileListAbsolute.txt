@@ -1,0 +1,12 @@
+C:\Projects\SurvivorLeague\SurvivorLeague.MLB\bin\Release\SurvivorLeague.MLB.dll.config
+C:\Projects\SurvivorLeague\SurvivorLeague.MLB\bin\Release\SurvivorLeague.MLB.dll
+C:\Projects\SurvivorLeague\SurvivorLeague.MLB\bin\Release\SurvivorLeague.MLB.pdb
+C:\Projects\SurvivorLeague\SurvivorLeague.MLB\bin\Release\EntityFramework.dll
+C:\Projects\SurvivorLeague\SurvivorLeague.MLB\bin\Release\EntityFramework.SqlServer.dll
+C:\Projects\SurvivorLeague\SurvivorLeague.MLB\bin\Release\EntityFramework.xml
+C:\Projects\SurvivorLeague\SurvivorLeague.MLB\bin\Release\EntityFramework.SqlServer.xml
+C:\Projects\SurvivorLeague\SurvivorLeague.MLB\obj\Release\SurvivorLeague.MLB.csprojResolveAssemblyReference.cache
+C:\Projects\SurvivorLeague\SurvivorLeague.MLB\obj\Release\SurvivorLeague.MLB.csproj.CoreCompileInputs.cache
+C:\Projects\SurvivorLeague\SurvivorLeague.MLB\obj\Release\SurvivorLeague.MLB.csproj.CopyComplete
+C:\Projects\SurvivorLeague\SurvivorLeague.MLB\obj\Release\SurvivorLeague.MLB.dll
+C:\Projects\SurvivorLeague\SurvivorLeague.MLB\obj\Release\SurvivorLeague.MLB.pdb

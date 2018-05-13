@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MLBLeagueModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Players">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateOfBirth" Type="date" Nullable="false" />
+    <Property Name="RegisteredDate" Type="date" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Confirmed" Type="bit" Nullable="false" />
+    <Property Name="ConfirmationCode" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SurvivorLeagues.mlb.FavoriteTeam' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="FavoriteTeam">
+    <Key>
+      <PropertyRef Name="PlayerID" />
+      <PropertyRef Name="TeamID" />
+    </Key>
+    <Property Name="PlayerID" Type="int" Nullable="false" />
+    <Property Name="TeamID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="League">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CommissionerPlayerID" Type="int" Nullable="false" />
+    <Property Name="Created" Type="date" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SurvivorLeagues.mlb.LeagueSeason' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="LeagueSeason">
+    <Key>
+      <PropertyRef Name="LeagueId" />
+      <PropertyRef Name="SeasonId" />
+    </Key>
+    <Property Name="LeagueId" Type="int" Nullable="false" />
+    <Property Name="SeasonId" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SurvivorLeagues.mlb.PlayerLeague' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="PlayerLeague">
+    <Key>
+      <PropertyRef Name="PlayerID" />
+      <PropertyRef Name="LeagueID" />
+    </Key>
+    <Property Name="PlayerID" Type="int" Nullable="false" />
+    <Property Name="LeagueID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Season">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SurvivorLeagues.mlb.SeasonSchedule' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="SeasonSchedule">
+    <Key>
+      <PropertyRef Name="SeasonID" />
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="Time" />
+      <PropertyRef Name="VisitorTeamID" />
+      <PropertyRef Name="HomeTeamID" />
+      <PropertyRef Name="Location" />
+    </Key>
+    <Property Name="SeasonID" Type="int" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Time" Type="time" Precision="0" Nullable="false" />
+    <Property Name="VisitorTeamID" Type="int" Nullable="false" />
+    <Property Name="HomeTeamID" Type="int" Nullable="false" />
+    <Property Name="Location" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Teams">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Location" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="League" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Division" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Colors" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_FavoriteTeam_Players">
+    <End Role="Players" Type="Self.Players" Multiplicity="1" />
+    <End Role="FavoriteTeam" Type="Self.FavoriteTeam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Players">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FavoriteTeam">
+        <PropertyRef Name="PlayerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FavoriteTeam_Teams">
+    <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+    <End Role="FavoriteTeam" Type="Self.FavoriteTeam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teams">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FavoriteTeam">
+        <PropertyRef Name="TeamID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_League_League">
+    <End Role="League" Type="Self.League" Multiplicity="1" />
+    <End Role="League1" Type="Self.League" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="League">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="League1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_League_Players">
+    <End Role="Players" Type="Self.Players" Multiplicity="1" />
+    <End Role="League" Type="Self.League" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Players">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="League">
+        <PropertyRef Name="CommissionerPlayerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlayerLeague_League">
+    <End Role="League" Type="Self.League" Multiplicity="1" />
+    <End Role="PlayerLeague" Type="Self.PlayerLeague" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="League">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PlayerLeague">
+        <PropertyRef Name="LeagueID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlayerLeague_Players">
+    <End Role="Players" Type="Self.Players" Multiplicity="1" />
+    <End Role="PlayerLeague" Type="Self.PlayerLeague" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Players">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PlayerLeague">
+        <PropertyRef Name="PlayerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SeasonSchedule_HomeTeams">
+    <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+    <End Role="SeasonSchedule" Type="Self.SeasonSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teams">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SeasonSchedule">
+        <PropertyRef Name="HomeTeamID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SeasonSchedule_Season">
+    <End Role="Season" Type="Self.Season" Multiplicity="1" />
+    <End Role="SeasonSchedule" Type="Self.SeasonSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Season">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SeasonSchedule">
+        <PropertyRef Name="SeasonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SeasonSchedule_VisitorTeams">
+    <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+    <End Role="SeasonSchedule" Type="Self.SeasonSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teams">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SeasonSchedule">
+        <PropertyRef Name="VisitorTeamID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="GetPlayerLeagues" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="mlb">
+    <Parameter Name="PlayerId" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="MLBLeagueModelStoreContainer">
+    <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="League" EntityType="Self.League" Schema="mlb" store:Type="Tables" />
+    <EntitySet Name="Season" EntityType="Self.Season" Schema="mlb" store:Type="Tables" />
+    <EntitySet Name="Teams" EntityType="Self.Teams" Schema="mlb" store:Type="Tables" />
+    <EntitySet Name="FavoriteTeam" EntityType="Self.FavoriteTeam" store:Type="Tables" store:Schema="mlb">
+      <DefiningQuery>SELECT 
+    [FavoriteTeam].[PlayerID] AS [PlayerID], 
+    [FavoriteTeam].[TeamID] AS [TeamID]
+    FROM [mlb].[FavoriteTeam] AS [FavoriteTeam]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="LeagueSeason" EntityType="Self.LeagueSeason" store:Type="Tables" store:Schema="mlb">
+      <DefiningQuery>SELECT 
+    [LeagueSeason].[LeagueId] AS [LeagueId], 
+    [LeagueSeason].[SeasonId] AS [SeasonId]
+    FROM [mlb].[LeagueSeason] AS [LeagueSeason]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="PlayerLeague" EntityType="Self.PlayerLeague" store:Type="Tables" store:Schema="mlb">
+      <DefiningQuery>SELECT 
+    [PlayerLeague].[PlayerID] AS [PlayerID], 
+    [PlayerLeague].[LeagueID] AS [LeagueID]
+    FROM [mlb].[PlayerLeague] AS [PlayerLeague]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SeasonSchedule" EntityType="Self.SeasonSchedule" store:Type="Tables" store:Schema="mlb">
+      <DefiningQuery>SELECT 
+    [SeasonSchedule].[SeasonID] AS [SeasonID], 
+    [SeasonSchedule].[Date] AS [Date], 
+    [SeasonSchedule].[Time] AS [Time], 
+    [SeasonSchedule].[VisitorTeamID] AS [VisitorTeamID], 
+    [SeasonSchedule].[HomeTeamID] AS [HomeTeamID], 
+    [SeasonSchedule].[Location] AS [Location]
+    FROM [mlb].[SeasonSchedule] AS [SeasonSchedule]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_FavoriteTeam_Players" Association="Self.FK_FavoriteTeam_Players">
+      <End Role="Players" EntitySet="Players" />
+      <End Role="FavoriteTeam" EntitySet="FavoriteTeam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FavoriteTeam_Teams" Association="Self.FK_FavoriteTeam_Teams">
+      <End Role="Teams" EntitySet="Teams" />
+      <End Role="FavoriteTeam" EntitySet="FavoriteTeam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_League_League" Association="Self.FK_League_League">
+      <End Role="League" EntitySet="League" />
+      <End Role="League1" EntitySet="League" />
+    </AssociationSet>
+    <AssociationSet Name="FK_League_Players" Association="Self.FK_League_Players">
+      <End Role="Players" EntitySet="Players" />
+      <End Role="League" EntitySet="League" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlayerLeague_League" Association="Self.FK_PlayerLeague_League">
+      <End Role="League" EntitySet="League" />
+      <End Role="PlayerLeague" EntitySet="PlayerLeague" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlayerLeague_Players" Association="Self.FK_PlayerLeague_Players">
+      <End Role="Players" EntitySet="Players" />
+      <End Role="PlayerLeague" EntitySet="PlayerLeague" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SeasonSchedule_HomeTeams" Association="Self.FK_SeasonSchedule_HomeTeams">
+      <End Role="Teams" EntitySet="Teams" />
+      <End Role="SeasonSchedule" EntitySet="SeasonSchedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SeasonSchedule_Season" Association="Self.FK_SeasonSchedule_Season">
+      <End Role="Season" EntitySet="Season" />
+      <End Role="SeasonSchedule" EntitySet="SeasonSchedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SeasonSchedule_VisitorTeams" Association="Self.FK_SeasonSchedule_VisitorTeams">
+      <End Role="Teams" EntitySet="Teams" />
+      <End Role="SeasonSchedule" EntitySet="SeasonSchedule" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

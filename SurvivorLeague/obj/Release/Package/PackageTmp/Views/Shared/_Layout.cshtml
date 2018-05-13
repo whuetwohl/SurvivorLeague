@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/cssjqryUi")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="~/Scripts/SurvivorLeague.js"></script>*@
+
+
+    @{ string BackColor = (Session["BackColor"] ?? "#007BFF").ToString();
+        string ForeColor = (Session["ForeColor"] ?? "#f9f9f9").ToString();
+    }
+</head>
+
+<body class="team-colors-reversed">
+
+
+
+    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-danger team-colors">
+        <div class="container">
+            @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new
+            {
+                @class = "navbar-brand",
+                onmouseover = "SwapColors(this, '" + BackColor + "', '" + ForeColor + "');",
+                onmouseleave = "SwapColors(this, '" + ForeColor + "', '" + BackColor + "');"
+            })
+            <button class="navbar-toggler team-colors" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    onmouseover="SwapColors(this, '@BackColor', '@ForeColor');"
+                    onmouseleave="SwapColors(this, '@ForeColor', '@BackColor');">
+                <i class="fa fa-angle-double-down" style="font-size:24px;"></i>
+            </button>
+
+            <div class="navbar-collapse collapse" id="navbarNav">
+                <ul class="nav navbar-nav ml-auto">
+                    @if (Session["PlayerId"] == null)
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Sign In", "Login", "Account", null, new
+                            {
+                                @class = "nav-link",
+                                onmouseover = "SwapColors(this, '" + BackColor + "', '" + ForeColor + "');",
+                                onmouseleave = "SwapColors(this, '" + ForeColor + "', '" + BackColor + "');"
+                            })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Register", "Registration", "Account", null, new
+                            {
+                                @class = "nav-link",
+                                onmouseover = "SwapColors(this, '" + BackColor + "', '" + ForeColor + "');",
+                                onmouseleave = "SwapColors(this, '" + ForeColor + "', '" + BackColor + "');"
+                            })
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Leagues", "Index", "Leagues", null, new
+                            {
+                                @class = "nav-link",
+                                onmouseover = "SwapColors(this, '" + BackColor + "', '" + ForeColor + "');",
+                                onmouseleave = "SwapColors(this, '" + ForeColor + "', '" + BackColor + "');"
+                            })
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            @Html.ActionLink(Session["PlayerName"].ToString().Split(' ')[0], "", "", null, new
+                            {
+                                @class = "nav-link dropdown-toggle",
+                                id = "navbarDropDown",
+                                onmouseover = "SwapColors(this, '" + BackColor + "', '" + ForeColor + "');",
+                                onmouseleave = "SwapColors(this, '" + ForeColor + "', '" + BackColor + "');",
+                                data_toggle = "dropdown"
+                            })
+                            <div class="dropdown-menu">
+                                @Html.ActionLink("Account Settings", "Settings", "Account", null, new
+                                {
+                                    @class = "dropdown-item",
+                                    onmouseover = "SwapColors(this, '" + BackColor + "', '" + ForeColor + "');",
+                                    onmouseleave = "SwapColors(this, '" + ForeColor + "', '" + BackColor + "');",
+                                })
+                                @Html.ActionLink("Sign Out", "SignOut", "Account", null, new
+                                {
+                                    @class = "dropdown-item",
+                                    onmouseover = "SwapColors(this, '" + BackColor + "', '" + ForeColor + "');",
+                                    onmouseleave = "SwapColors(this, '" + ForeColor + "', '" + BackColor + "');"
+                                })
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    @* To Return ViewPort size categor *@
+    @*<div class="container text-center">
+        <h2 class="d-sm-none size-indicator">Extra Small</h2>
+        <h2 class="d-none d-sm-block d-md-none size-indicator">Small</h2>
+        <h2 class="d-none d-md-block d-lg-none size-indicator">Medium</h2>
+        <h2 class="d-none d-lg-block d-xl-none size-indicator">Large</h2>
+        <h2 class="d-none d-xl-block size-indicator">Extra Large</h2>
+    </div>*@
+
+    <div class="container body-content" onmouseover="HideMenu('PlayerMenu');">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>WLH &copy; @DateTime.Now.Year</p>
+        </footer>
+    </div>
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/survivorleague")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+    <script>
+        ApplyColors('@Session["ForeColor"]', '@Session["BackColor"]');
+
+    </script>
+</body>
+
+</html>

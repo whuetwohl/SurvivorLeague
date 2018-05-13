@@ -1,0 +1,77 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+#helmet {
+    position: absolute;
+    display: none;
+}
+
+.size-indicator {
+    background: crimson;
+    color: white;
+    font-weight: bolder;
+}
+
+body {
+    background: #CCC;
+}
+
+/*.jumbotron {
+    color: #DC3545;
+}*/
+
+.jumbotron h1 {
+    font-family: 'Bangers', cursive;
+    font-size: 70px;
+    color: green;
+    text-shadow: 2px 2px 5px blue;
+   
+}
+
+.PastSelection { /*  Class for Teams that have already been selected in past weeks   */
+    opacity: 0.3;
+    cursor: not-allowed;
+    /*text-decoration: line-through;*/
+    text-transform: lowercase;
+    font-weight: normal;
+}
+
+.NoSelection {
+    opacity: 1.0;
+    cursor: pointer;
+    border-width: medium;
+}
+
+.CurrentSelection {
+    /*border-color: pink;*/
+    cursor: not-allowed;
+    /*border-width: 10px;*/
+    -webkit-animation: selectedborder .5s infinite;
+}
+
+@-webkit-keyframes selectedborder {
+    50% {color: white; background-color: black;}
+}
