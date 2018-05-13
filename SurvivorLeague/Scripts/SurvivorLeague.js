@@ -60,12 +60,13 @@ $(document).ready(function () {
 
 
 $(".NoSelection").click(function () {
-    $(".CurrentSelection").removeClass("CurrentSelection").addClass("NoSelection");
-    $(this).removeClass("NoSelection").addClass("CurrentSelection");
-    //pulse(this);
-    //$(".CurrentSelection").css({ 'border-color': 'pink' });
-    // $(".Selected").css({ opacity: 0.5 });
-    //$(".NoSelection").animate({ opacity: .7 }, 'slow');
-    
+    if (!this.classList.contains('PastGame')) {
+        $(".CurrentSelection").removeClass("CurrentSelection").addClass("NoSelection");
+        $(this).removeClass("NoSelection").addClass("CurrentSelection");
+        //pulse(this);
+        //$(".CurrentSelection").css({ 'border-color': 'pink' });
+        // $(".Selected").css({ opacity: 0.5 });
+        //$(".NoSelection").animate({ opacity: .7 }, 'slow');
+    }
 });
 

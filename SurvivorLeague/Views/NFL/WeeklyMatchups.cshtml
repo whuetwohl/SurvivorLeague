@@ -79,6 +79,22 @@
                                 homeClass += " NoSelection";
                             }
 
+                            // if(DateTime.Compare(matchup.DateAndTime, DateTime.Now) <= 0)
+                            if (Model.Week < 4)     //  this is temporary condition for testing functionality
+                            {
+                                if (selectedTeams.Count(st => st.TeamId == matchup.HomeTeam.Id) <= 0)
+                                {
+                                    homeClass += " PastGame";
+                                }
+                                if (selectedTeams.Count(st => st.TeamId == matchup.VisitorTeam.Id) <= 0)
+                                {
+
+                                    visitorClass += " PastGame";
+                                }
+                            }
+
+
+
                             <div class="row py-1 font-weight-bold">
                                 <div class="col-3 col-md-2 col-xl-1 align-self-center">@matchup.DateAndTime.ToShortTimeString()</div>
                                 <div class="col-4 col-xl-3 align-self-center">
@@ -106,32 +122,7 @@
                                     </div>
                                 </div>
 
-                                @*<div class="col-4 col-xl-3 align-self-center">
-                                        <div id="@matchup.VisitorTeam.Id" class="row lead font-weight-bold select-team @visitorClass" style="border-style:solid;  background:@matchup.VisitorTeam.Colors.Split('|')[0]; color:@matchup.VisitorTeam.Colors.Split('|')[1];">
 
-                                            <div class="col-12 d-none d-sm-block">
-                                                @matchup.VisitorTeam.Location
-                                            </div>
-                                            <div class="col-12">
-                                                @matchup.VisitorTeam.Name
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="align-self-center lead font-weight-bold">
-                                        @@
-                                    </div>
-                                    <div class="col-4 col-xl-3 align-self-center">
-                                        <div id="@matchup.HomeTeam.Id" class="row lead font-weight-bold select-team @homeClass" style="border-style:solid; border-color:@matchup.HomeTeam.Colors.Split('|')[1]; background:@matchup.HomeTeam.Colors.Split('|')[0]; color:@matchup.HomeTeam.Colors.Split('|')[1];">
-                                            <div class="col-12 d-none d-sm-block">
-                                                @matchup.HomeTeam.Location
-                                            </div>
-                                            <div class="col-12">
-                                                @matchup.HomeTeam.Name
-                                            </div>
-                                        </div>
-                                    </div>*@
-
-                                @*<div>@matchup.DateAndTime</div>*@
                             </div>
                         }
                     </div>

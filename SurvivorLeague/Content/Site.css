@@ -72,6 +72,11 @@ body {
     -webkit-animation: selectedborder .5s infinite;
 }
 
+.PastGame{
+    cursor: not-allowed;
+    opacity: .3;
+}
+
 @-webkit-keyframes selectedborder {
     50% {color: white; background-color: black;}
 }
