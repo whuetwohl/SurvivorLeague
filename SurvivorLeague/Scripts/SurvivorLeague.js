@@ -4,7 +4,7 @@ function TeamToWinFade(Winner, Loser) {
     $("#" + Winner).fadeTo('0.5', 1).css({ "cursor": "not-allowed" });
     $("#" + Loser).fadeTo('0.5', 0.5).css({ "cursor": "pointer" });
     //});
-};
+}
 
 //function ApplyColors(color1, color2) {
 //    //$("body").css({ "color": color1, "background-color": color2 });
@@ -17,15 +17,15 @@ function SwapColorScheme() {
     $(".team-colors-reversed").addClass("tcr").removeClass("team-colors-reversed");
     $(".tc").addClass("team-colors-reversed").removeClass("tc");
     $(".tcr").addClass("team-colors").removeClass("tcr");
-};
+}
 
 function ShowMenu(menuClass) {
     $("." + menuClass).slideDown(250);
-};
+}
 
 function HideMenu(menuClass) {
     $("." + menuClass).slideUp(250);
-};
+}
 
 //function SwapColors(id, fcolor, bcolor) {
 //    $(id).css({ "color": fcolor, "background-color": bcolor });
@@ -33,14 +33,14 @@ function HideMenu(menuClass) {
 
 function AddBorder(element) {
     $(element).addClass('border');
-};
+}
 function RemoveBorder(element) {
     $(element).removeClass('border');
-};
+}
 
 function DimSelectedTeams(id) {
     $('#' + id).css({ 'opacity': .5 });
-};
+}
 
 //function SelectTeam(element) {
 //    $('.select-team').css({ 'border': 'none' });
@@ -59,14 +59,15 @@ $(document).ready(function () {
 });
 
 
-$(".NoSelection").click(function () {
-    if (!this.classList.contains('PastGame')) {
-        $(".CurrentSelection").removeClass("CurrentSelection").addClass("NoSelection");
-        $(this).removeClass("NoSelection").addClass("CurrentSelection");
-        //pulse(this);
-        //$(".CurrentSelection").css({ 'border-color': 'pink' });
-        // $(".Selected").css({ opacity: 0.5 });
-        //$(".NoSelection").animate({ opacity: .7 }, 'slow');
-    }
-});
+//$(".NoSelection").click(function () {
+//    if (!this.classList.contains('PastGame')) {
+//        $(".CurrentSelection").removeClass("CurrentSelection").addClass("NoSelection");
+//        $(this).removeClass("NoSelection").addClass("CurrentSelection");
+//        //pulse(this);
+//        //$(".CurrentSelection").css({ 'border-color': 'pink' });
+//        // $(".Selected").css({ opacity: 0.5 });
+//        //$(".NoSelection").animate({ opacity: .7 }, 'slow');
+//        alert('script in file');
+//    }
+//});
 

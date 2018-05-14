@@ -184,6 +184,7 @@
       <DependentUpon>SurvivorLeague.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\TeamsListViewModel.cs" />
+    <Compile Include="Models\UpdatePick.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

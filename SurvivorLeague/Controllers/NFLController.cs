@@ -80,6 +80,38 @@ namespace SurvivorLeague.Controllers
             return View(WeeklyMatchups);
         }
 
+        [HttpPost]
+        //public ActionResult UpdatePick(int LeagueId, int SeasonId, int Week, int TeamId)
+        public ActionResult UpdatePick(UpdatePick pick)
+        {
+            //if (Session["PlayerId"] == null) return RedirectToAction("Index", "Home");
+
+            int playerId = Convert.ToInt32(Session["PlayerId"]);
+            using (NFLLeagueEntities nfl = new NFLLeagueEntities())
+            {
+                if(nfl.PlayerSelections.Count(ps => ps.PlayerId == playerId && ps.LeagueId == pick.LeagueId && ps.SeasonId == pick.SeasonId && ps.SelectedTeamId == pick.TeamId)>0)
+                {
+                    nfl.PlayerSelections.Remove(nfl.PlayerSelections.SingleOrDefault(ps => ps.PlayerId == playerId && ps.LeagueId == pick.LeagueId && ps.SeasonId == pick.SeasonId && ps.SelectedTeamId == pick.TeamId));
+                    nfl.SaveChanges();
+                }
+
+                var playerSelection = nfl.PlayerSelections.Where(ps => ps.PlayerId == playerId && ps.LeagueId == pick.LeagueId && ps.SeasonId == pick.SeasonId && ps.Week == pick.Week).FirstOrDefault();
+                if(playerSelection != null)
+                {
+                    playerSelection.SelectedTeamId = pick.TeamId;
+                }
+                else
+                {
+                    playerSelection = new PlayerSelection() { LeagueId = pick.LeagueId, SeasonId = pick.SeasonId, PlayerId = playerId, Week = pick.Week, SelectedTeamId = pick.TeamId };
+                    nfl.PlayerSelections.Add(playerSelection);
+                }
+                nfl.SaveChanges();
+            }
+
+
+                return RedirectToAction("WeeklyMatchups", new { pick.LeagueId, pick.SeasonId, pick.Week });
+        }
+
         public void SetColors()
         {
             NFLLeagueEntities nfl = new NFLLeagueEntities();

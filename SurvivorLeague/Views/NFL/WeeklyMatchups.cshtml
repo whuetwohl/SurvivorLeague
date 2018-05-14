@@ -134,3 +134,32 @@
 
     </div>
 </div>
+<script>
+    $(".NoSelection").click(function () {
+        if (!this.classList.contains('PastGame')) {
+            //alert('beginning f()');
+            $(".CurrentSelection").removeClass("CurrentSelection").addClass("NoSelection");
+            $(this).removeClass("NoSelection").addClass("CurrentSelection");
+            var pick = {};
+            pick.LeagueId = @Model.LeagueId;
+            pick.SeasonId = @Model.SeasonId;
+            pick.Week = @Model.Week;
+            pick.TeamId = parseInt(this.id);
+            console.log(pick.LeagueId);
+            console.log(pick.SeasonId);
+            console.log(pick.Week);
+            console.log(pick.TeamId);
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("UpdatePick")',
+                data: pick,
+                success: function () {
+                    console.log('Update Completed');
+                }
+            });
+
+            //alert('so far so good');
+        }
+    });
+</script>

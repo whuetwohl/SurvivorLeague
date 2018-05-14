@@ -59,8 +59,6 @@ warning 6002: The table/view 'SurvivorLeagues.nfl.PlayerLeague' does not have a 
           <Property Name="PlayerID" Type="int" Nullable="false" />
           <Property Name="LeagueID" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'SurvivorLeagues.nfl.PlayerSelections' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="PlayerSelections">
           <Key>
             <PropertyRef Name="PlayerId" />
@@ -273,6 +271,7 @@ warning 6002: The table/view 'SurvivorLeagues.nfl.SeasonSchedule' does not have 
         <EntityContainer Name="NFLLeagueModelStoreContainer">
           <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="League" EntityType="Self.League" Schema="nfl" store:Type="Tables" />
+          <EntitySet Name="PlayerSelections" EntityType="Self.PlayerSelections" Schema="nfl" store:Type="Tables" />
           <EntitySet Name="Season" EntityType="Self.Season" Schema="nfl" store:Type="Tables" />
           <EntitySet Name="Teams" EntityType="Self.Teams" Schema="nfl" store:Type="Tables" />
           <EntitySet Name="FavoriteTeam" EntityType="Self.FavoriteTeam" store:Type="Tables" store:Schema="nfl">
@@ -292,15 +291,6 @@ warning 6002: The table/view 'SurvivorLeagues.nfl.SeasonSchedule' does not have 
     [PlayerLeague].[PlayerID] AS [PlayerID], 
     [PlayerLeague].[LeagueID] AS [LeagueID]
     FROM [nfl].[PlayerLeague] AS [PlayerLeague]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="PlayerSelections" EntityType="Self.PlayerSelections" store:Type="Tables" store:Schema="nfl">
-            <DefiningQuery>SELECT 
-    [PlayerSelections].[PlayerId] AS [PlayerId], 
-    [PlayerSelections].[LeagueId] AS [LeagueId], 
-    [PlayerSelections].[SeasonId] AS [SeasonId], 
-    [PlayerSelections].[Week] AS [Week], 
-    [PlayerSelections].[SelectedTeamId] AS [SelectedTeamId]
-    FROM [nfl].[PlayerSelections] AS [PlayerSelections]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="SeasonSchedule" EntityType="Self.SeasonSchedule" store:Type="Tables" store:Schema="nfl">
             <DefiningQuery>SELECT 
