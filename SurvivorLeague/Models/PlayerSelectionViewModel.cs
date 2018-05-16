@@ -5,7 +5,7 @@ using System.Web;
 
 namespace SurvivorLeague.Models
 {
-    public class PlayerSelectionViewModel
+    public class PlayerSelectionViewModel : IDisposable
     {
         public int LeagueId { get; set; }
         public int SeasonId { get; set; }
@@ -21,6 +21,11 @@ namespace SurvivorLeague.Models
             SelectedTeamId = selectedTeamId;
             SelectedTeamName = selectedTeamName;
             TeamColors = teamColors;
+        }
+
+        public void Dispose()
+        {
+            
         }
     }
 }

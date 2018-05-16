@@ -13,13 +13,13 @@
     @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="~/Scripts/SurvivorLeague.js"></script>*@
     @*<style>
-        .jumbotron h1 {
-            font-family: 'Bangers', cursive;
-            font-size: 70px;
-            color: green;
-            text-shadow: 2px 2px 10px blue;
-        }
-    </style>*@
+            .jumbotron h1 {
+                font-family: 'Bangers', cursive;
+                font-size: 70px;
+                color: green;
+                text-shadow: 2px 2px 10px blue;
+            }
+        </style>*@
 
     @{ string BackColor = (Session["BackColor"] ?? "#007BFF").ToString();
         string ForeColor = (Session["ForeColor"] ?? "#f9f9f9").ToString();
@@ -33,12 +33,9 @@
     <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-danger team-colors">
         <div class="container">
             @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new
-       {
-           @class = "navbar-brand"
-           //,
-           //onmouseover = "SwapColors(this, '" + BackColor + "', '" + ForeColor + "');",
-           //onmouseleave = "SwapColors(this, '" + ForeColor + "', '" + BackColor + "');"
-       })
+            {
+                @class = "navbar-brand"
+            })
             <button class="navbar-toggler team-colors" type="button" data-toggle="collapse" data-target="#navbarNav"
                     onmouseover="SwapColors(this, '@BackColor', '@ForeColor');"
                     onmouseleave="SwapColors(this, '@ForeColor', '@BackColor');">
@@ -51,59 +48,42 @@
                     {
                         <li class="nav-item">
                             @Html.ActionLink("Sign In", "Login", "Account", null, new
-                       {
-                           @class = "nav-link"
-                           //,
-                           //onmouseover = "SwapColors(this, '" + BackColor + "', '" + ForeColor + "');",
-                           //onmouseleave = "SwapColors(this, '" + ForeColor + "', '" + BackColor + "');"
-                       })
+                            {
+                                @class = "nav-link"
+                            })
                         </li>
                         <li class="nav-item">
                             @Html.ActionLink("Register", "Registration", "Account", null, new
-                       {
-                           @class = "nav-link"
-                           //,
-                           //onmouseover = "SwapColors(this, '" + BackColor + "', '" + ForeColor + "');",
-                           //onmouseleave = "SwapColors(this, '" + ForeColor + "', '" + BackColor + "');"
-                       })
+                            {
+                                @class = "nav-link"
+                            })
                         </li>
                     }
                     else
                     {
                         <li class="nav-item">
                             @Html.ActionLink("Leagues", "Index", "Leagues", null, new
-                       {
-                           @class = "nav-link"
-                           //,
-                           //onmouseover = "SwapColors(this, '" + BackColor + "', '" + ForeColor + "');",
-                           //onmouseleave = "SwapColors(this, '" + ForeColor + "', '" + BackColor + "');"
-                       })
+                            {
+                                @class = "nav-link"
+                            })
                         </li>
 
                         <li class="nav-item dropdown">
                             @Html.ActionLink(Session["PlayerName"].ToString().Split(' ')[0], "", "", null, new
-                       {
-                           @class = "nav-link dropdown-toggle",
-                           id = "navbarDropDown",
-                           //onmouseover = "SwapColors(this, '" + BackColor + "', '" + ForeColor + "');",
-                           //onmouseleave = "SwapColors(this, '" + ForeColor + "', '" + BackColor + "');",
-                           data_toggle = "dropdown"
-                       })
+                            {
+                                @class = "nav-link dropdown-toggle",
+                                id = "navbarDropDown",
+                                data_toggle = "dropdown"
+                            })
                             <div class="dropdown-menu">
                                 @Html.ActionLink("Account Settings", "Settings", "Account", null, new
-                           {
-                               @class = "dropdown-item"
-                               //,
-                               //onmouseover = "SwapColors(this, '" + BackColor + "', '" + ForeColor + "');",
-                               //onmouseleave = "SwapColors(this, '" + ForeColor + "', '" + BackColor + "');",
-                           })
+                                {
+                                    @class = "dropdown-item"
+                                })
                                 @Html.ActionLink("Sign Out", "SignOut", "Account", null, new
-                           {
-                               @class = "dropdown-item"
-                               //,
-                               //onmouseover = "SwapColors(this, '" + BackColor + "', '" + ForeColor + "');",
-                               //onmouseleave = "SwapColors(this, '" + ForeColor + "', '" + BackColor + "');"
-                           })
+                                {
+                                    @class = "dropdown-item"
+                                })
                             </div>
                         </li>
                     }

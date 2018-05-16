@@ -24,14 +24,59 @@
 
         </div>
 
+        @for (int x = 1; x <= 17; x++)
+        {
+            <div class="row text-center my-1 lead font-weight-bold">
+                <div class="col-3 col-lg-1 d-lg-none"></div>
+                @using (var item = Model.SingleOrDefault(m => m.Week == x))
+                {
+                    if (Model.SingleOrDefault(m => m.Week == x) != null)
+                    {
+                        <a class="col-6 col-lg-4" onmouseover="AddBorder(this);" onmouseout="RemoveBorder(this);" style="color:@item.TeamColors.Split('|')[1]; background-color:@item.TeamColors.Split('|')[0]" href="/NFL/WeeklyMatchups?LeagueId=@item.LeagueId&SeasonId=@item.SeasonId&Week=@item.Week">
+                            <div class="row">
+                                <div class="col-6">
+                                    @item.Week
+                                </div>
+                                <div class="col-6">
+                                    @item.SelectedTeamName
+                                </div>
+                            </div>
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="col-6 col-lg-4 team-colors-reversed" href="/NFL/WeeklyMatchups?LeagueId=@Model.First().LeagueId&SeasonId=@Model.First().SeasonId&Week=@x">
+                            <div class="row" onmouseover="AddBorder(this);" onmouseout="RemoveBorder(this);">
+                                <div class="col-6">
+                                    @x.ToString()
+                                </div>
+                                <div class="col-6">
+                                    -----
+                                </div>
+                            </div>
+                        </a>
+
+                    }
+                }
+                @*<div class="col-3 col-lg-2 rounded-left" style="color:@item.TeamColors.Split('|')[1]; background-color:@item.TeamColors.Split('|')[0]">
+                        @Html.ActionLink(item.Week.ToString(), "WeeklyMatchups", "NFL", new { LeagueId = item.LeagueId, SeasonId = item.SeasonId, Week = item.Week }, new { @style = "color:" + item.TeamColors.Split('|')[1] + "; background-color:" + item.TeamColors.Split('|')[0] })
+                    </div>
+                    <div class="col-3 col-lg-2 rounded-right" style="color:@item.TeamColors.Split('|')[1]; background-color:@item.TeamColors.Split('|')[0]">
+                        @item.SelectedTeamName
+                    </div>*@
+                <div class="col-3 col-lg-7"></div>
+
+            </div>
+
+        }
 
         @foreach (var item in Model)
         {
             <div class="row text-center my-1 lead font-weight-bold">
                 <div class="col-3 col-lg-1 d-lg-none"></div>
-                <a class="col-6 col-lg-4"  onmouseover="AddBorder(this);"  onmouseout="RemoveBorder(this);" style="color:@item.TeamColors.Split('|')[1]; background-color:@item.TeamColors.Split('|')[0]" href="/NFL/WeeklyMatchups?LeagueId=@item.LeagueId&SeasonId=@item.SeasonId&Week=@item.Week">
+                <a class="col-6 col-lg-4" onmouseover="AddBorder(this);" onmouseout="RemoveBorder(this);" style="color:@item.TeamColors.Split('|')[1]; background-color:@item.TeamColors.Split('|')[0]" href="/NFL/WeeklyMatchups?LeagueId=@item.LeagueId&SeasonId=@item.SeasonId&Week=@item.Week">
                     <div class="row">
-                        <div class="col-6" >
+                        <div class="col-6">
                             @item.Week
                         </div>
                         <div class="col-6">
@@ -66,11 +111,11 @@
                 </a>
 
                 @*<div class="col-3 col-lg-2">
-            @Html.ActionLink(x.ToString(), "WeeklyMatchups", "NFL", new { LeagueId = Model.First().LeagueId, SeasonId = Model.First().SeasonId, Week = x }, new { @class = "team-colors-reversed" })
-        </div>
-        <div class="col-3 col-lg-2">
-            -----
-        </div>*@
+                        @Html.ActionLink(x.ToString(), "WeeklyMatchups", "NFL", new { LeagueId = Model.First().LeagueId, SeasonId = Model.First().SeasonId, Week = x }, new { @class = "team-colors-reversed" })
+                    </div>
+                    <div class="col-3 col-lg-2">
+                        -----
+                    </div>*@
                 <div class="col-3 col-lg-7"></div>
             </div>
 
