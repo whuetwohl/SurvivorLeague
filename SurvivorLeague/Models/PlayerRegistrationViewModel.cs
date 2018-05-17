@@ -37,6 +37,10 @@ namespace SurvivorLeague.Models
         [PasswordPropertyText]
         public string ConfirmPassword { get; set; }
 
+        [Required(ErrorMessage = "REQUIRED")]
+        [DisplayName("Password Hint")]
+        public string PasswordHint { get; set; }
+
         public PlayerRegistrationViewModel(string firstName, string lastName, DateTime dateOfBirth, string email, string password, string confirmPassword)
         {
             FirstName = firstName;
