@@ -82,6 +82,9 @@
     <Compile Include="Player.cs">
       <DependentUpon>NFL.tt</DependentUpon>
     </Compile>
+    <Compile Include="PlayerLeagueSeason.cs">
+      <DependentUpon>NFL.tt</DependentUpon>
+    </Compile>
     <Compile Include="PlayerSelection.cs">
       <DependentUpon>NFL.tt</DependentUpon>
     </Compile>
