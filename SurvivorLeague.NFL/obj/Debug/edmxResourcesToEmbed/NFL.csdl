@@ -17,6 +17,7 @@
     <NavigationProperty Name="Leagues1" Relationship="Self.PlayerLeague" FromRole="Players" ToRole="League" />
     <Property Name="Confirmed" Type="Boolean" Nullable="false" />
     <Property Name="ConfirmationCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PlayerLeagueSeasons" Relationship="NFLLeagueModel.FK_PlayerLeagueSeason_Players" FromRole="Player" ToRole="PlayerLeagueSeason" />
   </EntityType>
   <EntityType Name="League">
     <Key>
@@ -30,6 +31,7 @@
     <NavigationProperty Name="Player" Relationship="Self.FK_League_Players" FromRole="League" ToRole="Players" />
     <NavigationProperty Name="PlayerSelections" Relationship="Self.FK_PlayerSelections_League" FromRole="League" ToRole="PlayerSelections" />
     <NavigationProperty Name="Players" Relationship="Self.PlayerLeague" FromRole="League" ToRole="Players" />
+    <NavigationProperty Name="PlayerLeagueSeasons" Relationship="NFLLeagueModel.FK_PlayerLeagueSeason_League" FromRole="League" ToRole="PlayerLeagueSeason" />
   </EntityType>
   <EntityType Name="Season">
     <Key>
@@ -39,6 +41,7 @@
     <Property Name="Year" Type="Int32" Nullable="false" />
     <NavigationProperty Name="PlayerSelections" Relationship="Self.FK_PlayerSelections_Season" FromRole="Season" ToRole="PlayerSelections" />
     <NavigationProperty Name="SeasonSchedules" Relationship="Self.FK_SeasonSchedule_Season" FromRole="Season" ToRole="SeasonSchedule" />
+    <NavigationProperty Name="PlayerLeagueSeasons" Relationship="NFLLeagueModel.FK_PlayerLeagueSeason_Season" FromRole="Season" ToRole="PlayerLeagueSeason" />
   </EntityType>
   <EntityType Name="Team">
     <Key>
@@ -267,6 +270,19 @@
       <Parameter Name="LeagueId" Mode="In" Type="Int32" />
       <Parameter Name="SeasonId" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="PlayerLeagueSeasons" EntityType="NFLLeagueModel.PlayerLeagueSeason" />
+    <AssociationSet Name="FK_PlayerLeagueSeason_Players" Association="NFLLeagueModel.FK_PlayerLeagueSeason_Players">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="PlayerLeagueSeason" EntitySet="PlayerLeagueSeasons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlayerLeagueSeason_League" Association="NFLLeagueModel.FK_PlayerLeagueSeason_League">
+      <End Role="League" EntitySet="Leagues" />
+      <End Role="PlayerLeagueSeason" EntitySet="PlayerLeagueSeasons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlayerLeagueSeason_Season" Association="NFLLeagueModel.FK_PlayerLeagueSeason_Season">
+      <End Role="Season" EntitySet="Seasons" />
+      <End Role="PlayerLeagueSeason" EntitySet="PlayerLeagueSeasons" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="GetLeagueSeasonWeekMatchups_Result">
     <Property Type="Int32" Name="Week" Nullable="false" />
@@ -289,4 +305,53 @@
     <Property Type="Int32" Name="Week" Nullable="false" />
     <Property Type="Int32" Name="SelectedTeamId" Nullable="true" />
   </ComplexType>
+  <EntityType Name="PlayerLeagueSeason">
+    <Key>
+      <PropertyRef Name="PlayerId" />
+      <PropertyRef Name="LeagueId" />
+      <PropertyRef Name="SeasonId" />
+    </Key>
+    <Property Name="PlayerId" Type="Int32" Nullable="false" />
+    <Property Name="LeagueId" Type="Int32" Nullable="false" />
+    <Property Name="SeasonId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Player" Relationship="NFLLeagueModel.FK_PlayerLeagueSeason_Players" FromRole="PlayerLeagueSeason" ToRole="Player" />
+    <NavigationProperty Name="League" Relationship="NFLLeagueModel.FK_PlayerLeagueSeason_League" FromRole="PlayerLeagueSeason" ToRole="League" />
+    <NavigationProperty Name="Season" Relationship="NFLLeagueModel.FK_PlayerLeagueSeason_Season" FromRole="PlayerLeagueSeason" ToRole="Season" />
+  </EntityType>
+  <Association Name="FK_PlayerLeagueSeason_Players">
+    <End Type="NFLLeagueModel.Player" Role="Player" Multiplicity="1" />
+    <End Type="NFLLeagueModel.PlayerLeagueSeason" Role="PlayerLeagueSeason" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PlayerLeagueSeason">
+        <PropertyRef Name="PlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlayerLeagueSeason_League">
+    <End Type="NFLLeagueModel.League" Role="League" Multiplicity="1" />
+    <End Type="NFLLeagueModel.PlayerLeagueSeason" Role="PlayerLeagueSeason" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="League">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PlayerLeagueSeason">
+        <PropertyRef Name="LeagueId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlayerLeagueSeason_Season">
+    <End Type="NFLLeagueModel.Season" Role="Season" Multiplicity="1" />
+    <End Type="NFLLeagueModel.PlayerLeagueSeason" Role="PlayerLeagueSeason" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Season">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PlayerLeagueSeason">
+        <PropertyRef Name="SeasonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
