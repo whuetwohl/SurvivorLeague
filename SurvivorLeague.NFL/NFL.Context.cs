@@ -34,6 +34,7 @@ namespace SurvivorLeague.NFL
         public virtual DbSet<LeagueSeason> LeagueSeasons { get; set; }
         public virtual DbSet<PlayerSelection> PlayerSelections { get; set; }
         public virtual DbSet<SeasonSchedule> SeasonSchedules { get; set; }
+        public virtual DbSet<PlayerLeagueSeason> PlayerLeagueSeasons { get; set; }
     
         public virtual ObjectResult<GetLeagueSeasonWeekMatchups_Result> GetLeagueSeasonWeekMatchups(Nullable<int> leagueId, Nullable<int> seasonId, Nullable<int> week)
         {

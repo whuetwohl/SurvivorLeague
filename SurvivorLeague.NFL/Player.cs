@@ -21,6 +21,7 @@ namespace SurvivorLeague.NFL
             this.PlayerSelections = new HashSet<PlayerSelection>();
             this.FavoriteTeam = new HashSet<Team>();
             this.Leagues1 = new HashSet<League>();
+            this.PlayerLeagueSeasons = new HashSet<PlayerLeagueSeason>();
         }
     
         public int ID { get; set; }
@@ -41,5 +42,7 @@ namespace SurvivorLeague.NFL
         public virtual ICollection<Team> FavoriteTeam { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<League> Leagues1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PlayerLeagueSeason> PlayerLeagueSeasons { get; set; }
     }
 }

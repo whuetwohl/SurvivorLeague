@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="48ed732c01cc4f139aa9bd9275fc080d" Name="Diagram1">
+      <Diagram DiagramId="48ed732c01cc4f139aa9bd9275fc080d" Name="Diagram1" ZoomLevel="24">
         <EntityTypeShape EntityType="NFLLeagueModel.Player" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NFLLeagueModel.League" Width="1.5" PointX="1.5" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="NFLLeagueModel.Season" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
@@ -22,6 +22,10 @@
         <AssociationConnector Association="NFLLeagueModel.FK_SeasonSchedule_VisitorTeams" ManuallyRouted="false" />
         <AssociationConnector Association="NFLLeagueModel.FavoriteTeam" ManuallyRouted="false" />
         <AssociationConnector Association="NFLLeagueModel.PlayerLeague" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NFLLeagueModel.PlayerLeagueSeason" Width="1.5" PointX="3.75" PointY="9" />
+        <AssociationConnector Association="NFLLeagueModel.FK_PlayerLeagueSeason_Players" />
+        <AssociationConnector Association="NFLLeagueModel.FK_PlayerLeagueSeason_League" />
+        <AssociationConnector Association="NFLLeagueModel.FK_PlayerLeagueSeason_Season" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
