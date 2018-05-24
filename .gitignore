@@ -10,6 +10,7 @@
 .vs/*
 packages/*
 web.config
+.vs/SurvivorLeague/v15/.suo
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
