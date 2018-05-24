@@ -121,5 +121,12 @@ namespace SurvivorLeague.Controllers
             Session["BackColor"] = Colors.Split('|')[0];
             Session["ForeColor"] = Colors.Split('|')[1];
         }
+
+        public ActionResult LeaguesPartial()
+        {
+
+
+            return PartialView("_LeaguesPartial", 
+        }
     }
 }

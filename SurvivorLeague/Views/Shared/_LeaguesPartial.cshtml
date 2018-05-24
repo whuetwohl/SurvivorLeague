@@ -1,0 +1,12 @@
+﻿@model IEnumerable<SurvivorLeague.NFL.League>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<ul>
+    @foreach (var league in Model.OrderByDescending(m=>m.Created))
+    {
+        @Html.ActionLink(league.Name, "League", "NFL", new { league.ID, league.PlayerLeagueSeasons.FirstOrDefault().Season.Year }, null);
+    }
+</ul>
+
