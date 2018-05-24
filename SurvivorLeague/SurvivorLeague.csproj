@@ -185,6 +185,7 @@
     </Compile>
     <Compile Include="Models\TeamsListViewModel.cs" />
     <Compile Include="Models\UpdatePick.cs" />
+    <Compile Include="Models\ViewModels\AccountLoginViewModel.cs" />
     <Compile Include="Models\ViewModels\BaseViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

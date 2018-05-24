@@ -75,7 +75,7 @@ namespace SurvivorLeague.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(Player player)
+        public ActionResult Login(AccountLoginViewModel player)
         {
             using (SurvivorLeagueEntities db = new SurvivorLeagueEntities())
             {
@@ -121,8 +121,8 @@ namespace SurvivorLeague.Controllers
         {
             Session["PlayerId"] = null;
             Session["PlayerName"] = null;
-            Session["ForeColor"] = null;
-            Session["BackColor"] = null;
+            //Session["ForeColor"] = null;
+            //Session["BackColor"] = null;
             return RedirectToAction("Index", "Home");
         }
 
