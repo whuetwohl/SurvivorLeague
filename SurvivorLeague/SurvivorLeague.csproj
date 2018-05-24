@@ -165,7 +165,7 @@
       <DependentUpon>SurvivorLeague.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PlayerLeagueViewModel.cs" />
-    <Compile Include="Models\PlayerRegistrationViewModel.cs" />
+    <Compile Include="Models\ViewModels\AccountRegistrationViewModel.cs" />
     <Compile Include="Models\PlayerSelectionViewModel.cs" />
     <Compile Include="Models\PlayerWeekMatchupViewModel.cs" />
     <Compile Include="Models\SurvivorLeague.Context.cs">

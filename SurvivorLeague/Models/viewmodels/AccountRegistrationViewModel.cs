@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SurvivorLeague.Models
 {
-    public class PlayerRegistrationViewModel
+    public class AccountRegistrationViewModel
     {
         [Required(ErrorMessage = "REQUIRED")]
         [DisplayName("First Name")]
@@ -41,7 +41,7 @@ namespace SurvivorLeague.Models
         [DisplayName("Password Hint")]
         public string PasswordHint { get; set; }
 
-        public PlayerRegistrationViewModel(string firstName, string lastName, DateTime dateOfBirth, string email, string password, string confirmPassword)
+        public AccountRegistrationViewModel(string firstName, string lastName, DateTime dateOfBirth, string email, string password, string confirmPassword)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -50,7 +50,7 @@ namespace SurvivorLeague.Models
             Password = password;
         }
 
-        public PlayerRegistrationViewModel()
+        public AccountRegistrationViewModel()
         {
 
         }

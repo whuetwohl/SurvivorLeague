@@ -9,7 +9,6 @@ C:\Projects\SurvivorLeague\SurvivorLeague.NFL\obj\Debug\SurvivorLeague.NFL.cspro
 C:\Projects\SurvivorLeague\SurvivorLeague.NFL\obj\Debug\SurvivorLeague.NFL.csproj.CopyComplete
 C:\Projects\SurvivorLeague\SurvivorLeague.NFL\obj\Debug\SurvivorLeague.NFL.dll
 C:\Projects\SurvivorLeague\SurvivorLeague.NFL\obj\Debug\SurvivorLeague.NFL.pdb
-C:\Projects\SurvivorLeague\SurvivorLeague.NFL\obj\Debug\SurvivorLeague.NFL.csprojResolveAssemblyReference.cache
 C:\Users\whuetwohl\OneDrive\Projects\SurvivorLeague\SurvivorLeague.NFL\bin\Debug\SurvivorLeague.NFL.dll.config
 C:\Users\whuetwohl\OneDrive\Projects\SurvivorLeague\SurvivorLeague.NFL\bin\Debug\SurvivorLeague.NFL.dll
 C:\Users\whuetwohl\OneDrive\Projects\SurvivorLeague\SurvivorLeague.NFL\bin\Debug\SurvivorLeague.NFL.pdb

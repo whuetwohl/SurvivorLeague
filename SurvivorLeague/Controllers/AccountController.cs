@@ -26,7 +26,7 @@ namespace SurvivorLeague.Controllers
         }
 
         [HttpPost]
-        public ActionResult Registration(PlayerRegistrationViewModel vm)
+        public ActionResult Registration(AccountRegistrationViewModel vm)
         {
 
             if(ModelState.IsValid)
