@@ -16,7 +16,7 @@ namespace SurvivorLeague.Controllers
             // remove after complete
             if (Session["PlayerId"] == null) return RedirectToAction("Index", "Home");
 
-            SetColors();
+            //SetColors();
             return View();
         }
 
@@ -25,7 +25,7 @@ namespace SurvivorLeague.Controllers
             // remove after complete
             if (Session["PlayerId"] == null) return RedirectToAction("Index", "Home");
 
-            SetColors();
+            //SetColors();
             int playerId = Convert.ToInt32(Session["PlayerId"]);
 
             // TODO: Year will be implemented later
@@ -51,7 +51,7 @@ namespace SurvivorLeague.Controllers
             // remove after complete
             if (Session["PlayerId"] == null) return RedirectToAction("Index", "Home");
 
-            SetColors();
+            //SetColors();
             int playerId = Convert.ToInt32(Session["PlayerId"]);
 
             WeeklyMatchupsViewModel WeeklyMatchups = new WeeklyMatchupsViewModel();
@@ -112,15 +112,15 @@ namespace SurvivorLeague.Controllers
                 return RedirectToAction("WeeklyMatchups", new { pick.LeagueId, pick.SeasonId, pick.Week });
         }
 
-        public void SetColors()
-        {
-            NFLLeagueEntities nfl = new NFLLeagueEntities();
-            var PlayerId = Convert.ToInt32(Session["PlayerId"]);
+        //public void SetColors()
+        //{
+        //    NFLLeagueEntities nfl = new NFLLeagueEntities();
+        //    var PlayerId = Convert.ToInt32(Session["PlayerId"]);
 
-            var Colors = nfl.Players.SingleOrDefault(p => p.ID == PlayerId).FavoriteTeam.SingleOrDefault().Colors;
-            Session["BackColor"] = Colors.Split('|')[0];
-            Session["ForeColor"] = Colors.Split('|')[1];
-        }
+        //    var Colors = nfl.Players.SingleOrDefault(p => p.ID == PlayerId).FavoriteTeam.SingleOrDefault().Colors;
+        //    Session["BackColor"] = Colors.Split('|')[0];
+        //    Session["ForeColor"] = Colors.Split('|')[1];
+        //}
 
     }
 }
