@@ -107,9 +107,7 @@ namespace SurvivorLeague.Controllers
                 }
                 nfl.SaveChanges();
             }
-
-
-                return RedirectToAction("WeeklyMatchups", new { pick.LeagueId, pick.SeasonId, pick.Week });
+            return RedirectToAction("WeeklyMatchups", new { pick.LeagueId, pick.SeasonId, pick.Week });
         }
 
         //public void SetColors()
