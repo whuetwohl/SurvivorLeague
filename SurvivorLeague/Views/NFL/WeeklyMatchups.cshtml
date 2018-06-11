@@ -112,7 +112,7 @@
                                     @@
                                 </div>
                                 <div class="col-4 col-xl-3 align-self-center">
-                                    <div id="@matchup.HomeTeam.Id" class="row lead font-weight-bold select-team @homeClass" style="border-style:solid; border-color:@matchup.HomeTeam.Colors.Split('|')[1]; background:@matchup.HomeTeam.Colors.Split('|')[0]; color:@matchup.HomeTeam.Colors.Split('|')[1];">
+                                    <div id="@matchup.HomeTeam.Id" value="@matchup.HomeTeam.Id.ToString()" class="row lead font-weight-bold select-team @homeClass" style="border-style:solid; background:@matchup.HomeTeam.Colors.Split('|')[0]; color:@matchup.HomeTeam.Colors.Split('|')[1];">
                                         <div class="col-12 d-none d-md-block">
                                             @matchup.HomeTeam.Location
                                         </div>
