@@ -49,7 +49,11 @@ namespace SurvivorLeague.Controllers
 
 
                 // continue here... don't get the start week correctly... sure it's something dumb that I am overlooking
-                var startWeek = (from ss in nfl.SeasonSchedules where DateTime.Compare(ss.DateAndTime, DateTime.Now) > 0 select ss.Week).Min();
+                //var startWeek = (from ss in nfl.SeasonSchedules where DateTime.Compare(ss.DateAndTime, DateTime.Now) > 0 select ss.Week).Min();
+                var now = DateTime.Now;
+
+                var startWeek = nfl.SeasonSchedules.Where(s => s.DateAndTime > DateTime.Now).Select(i => i.Week).Min();
+
 
                 while (true) ;
             }
