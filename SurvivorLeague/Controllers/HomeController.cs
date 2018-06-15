@@ -22,7 +22,9 @@ namespace SurvivorLeague.Controllers
                                 .Where(i => !i.IsIPv6LinkLocal).FirstOrDefault();
             var hostName = System.Net.Dns.GetHostName();
 
-            Session["PlayerId"] = "1";
+            Session["PlayerId"] = 1;
+            Session["PlayerName"] = string.Format("{0} {1}", "Walter", "Huetwohl");
+
             Session["Domain"] = $"{ ipAddress }/SurvivorLeague";
             return View();
         }

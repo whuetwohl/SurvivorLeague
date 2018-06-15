@@ -15,7 +15,7 @@ namespace SurvivorLeague.Models
         [DisplayName("League Name")]
         [Required(ErrorMessage = "REQUIRED")]
         public string LeagueName { get; set; }
-        [DisplayName("Notes")]
+        [DisplayName("Commissioner's Notes")]
         public string  LeagueNotes { get; set; }
         [DisplayName("Start Week")]
         public int StartWeek { get; set; }
