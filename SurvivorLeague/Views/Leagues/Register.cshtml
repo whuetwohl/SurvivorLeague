@@ -18,21 +18,35 @@
 
         <div class="row commissioner">
             <div class="col-8 row">
-                <div class="form-group col-8" >
+                <div class="form-group col-8" style="background-color:lightblue">
                     @Html.LabelFor(model => model.LeagueName, htmlAttributes: new { @class = "control-label" })
-                    <div>
                         @Html.EditorFor(model => model.LeagueName, new { htmlAttributes = new { @class = "form-control" } })
-                    </div>
                     @Html.ValidationMessageFor(model => model.LeagueName, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group col-4">
+                <div class="form-group col-4" style="background-color:pink">
                     @Html.LabelFor(model => model.StartWeek, htmlAttributes: new { @class = "control-label" })
                     <div>
-                        @Html.DropDownListFor(model => model.StartWeek, new SelectList(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 }), "Start Week")
+                        @*                        @Html.DropDownListFor(model => model.StartWeek, new SelectList(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 }), "Start Week")*@
+                        @Html.DropDownListFor(model => model.StartWeek, Enumerable.Range(Model.StartWeek, 17 - Model.StartWeek + 1).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Start Week")
                     </div>
                     @Html.ValidationMessageFor(model => model.LeagueName, "", new { @class = "text-danger" })
+                </div>  
+
+
+                <!-- TODO: Get text area to fill div -->
+                <div class="col-12">
+                    <div class="form-group col-12" style="background-color:orange">
+                        @Html.LabelFor(model => model.LeagueNotes, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.TextAreaFor(model => model.LeagueNotes, new { htmlAttributes = new { @class = "form-control", style="width:100%; height:100%" } })
+                            
+                        </div>
+                        @Html.ValidationMessageFor(model => model.LeagueNotes, "", new { @class = "text-danger" })
+                    </div>
                 </div>
+
             </div>
+
             <div class="col-4">
                 <div class="col-12 lead text-center">Commissioner</div>
                 <div class="col-12 text-center">@Model.CommissionerName</div>
