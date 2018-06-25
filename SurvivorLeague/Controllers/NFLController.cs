@@ -109,16 +109,5 @@ namespace SurvivorLeague.Controllers
             }
             return RedirectToAction("WeeklyMatchups", new { pick.LeagueId, pick.SeasonId, pick.Week });
         }
-
-        //public void SetColors()
-        //{
-        //    NFLLeagueEntities nfl = new NFLLeagueEntities();
-        //    var PlayerId = Convert.ToInt32(Session["PlayerId"]);
-
-        //    var Colors = nfl.Players.SingleOrDefault(p => p.ID == PlayerId).FavoriteTeam.SingleOrDefault().Colors;
-        //    Session["BackColor"] = Colors.Split('|')[0];
-        //    Session["ForeColor"] = Colors.Split('|')[1];
-        //}
-
     }
 }

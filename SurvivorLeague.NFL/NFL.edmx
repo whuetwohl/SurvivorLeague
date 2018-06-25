@@ -101,6 +101,7 @@ warning 6002: The table/view 'SurvivorLeagues.nfl.SeasonSchedule' does not have 
           <Key>
             <PropertyRef Name="SeasonID" />
             <PropertyRef Name="Week" />
+            
             <PropertyRef Name="Date" />
             <PropertyRef Name="Time" />
             <PropertyRef Name="VisitorTeamID" />
@@ -109,7 +110,7 @@ warning 6002: The table/view 'SurvivorLeagues.nfl.SeasonSchedule' does not have 
           </Key>
           <Property Name="SeasonID" Type="int" Nullable="false" />
           <Property Name="Week" Type="int" Nullable="false" />
-          <Property Name="DateAndTime" Type="datetime" />
+          <Property Name="DateAndTime" Type="datetime" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="Time" Type="time" Precision="0" Nullable="false" />
           <Property Name="VisitorTeamID" Type="int" Nullable="false" />
@@ -540,7 +541,7 @@ warning 6002: The table/view 'SurvivorLeagues.nfl.SeasonSchedule' does not have 
           <NavigationProperty Name="Season" Relationship="Self.FK_SeasonSchedule_Season" FromRole="SeasonSchedule" ToRole="Season" />
           <NavigationProperty Name="Team" Relationship="Self.FK_SeasonSchedule_HomeTeams" FromRole="SeasonSchedule" ToRole="Teams" />
           <NavigationProperty Name="Team1" Relationship="Self.FK_SeasonSchedule_VisitorTeams" FromRole="SeasonSchedule" ToRole="Teams" />
-          <Property Name="DateAndTime" Type="DateTime" Precision="3" />
+          <Property Name="DateAndTime" Type="DateTime" Precision="3" Nullable="false" />
         </EntityType>
         <Association Name="FK_League_Players">
           <End Role="Players" Type="Self.Player" Multiplicity="1" />

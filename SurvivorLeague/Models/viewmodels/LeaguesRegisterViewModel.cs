@@ -17,21 +17,26 @@ namespace SurvivorLeague.Models
         public string LeagueName { get; set; }
         [DisplayName("Commissioner's Notes")]
         public string  LeagueNotes { get; set; }
-        [DisplayName("Start Week")]
+        [DisplayName("Week")]
         public int StartWeek { get; set; }
-        
+        [DisplayName("Players")]
+        public int NumberOfInvitees { get; set; }
+
         public DateTime LeagueRegistrationDate { get; set; }
 
         [DisplayName("Invitees")]
-        List<Invitee> Invitees{ get; set; }
+        public List<Invitee> Invitees{ get; set; }
 
     }
 
-    class Invitee
+    public class Invitee
     {
+        [DisplayName("Player Name")]
         public string Name { get; set; }
         [EmailAddress]
+        [DisplayName("Player Email")]
         public string Email { get; set; }
+        [DisplayName("Qty")]
         public int NumberOfEntries { get; set; }
     }
 }

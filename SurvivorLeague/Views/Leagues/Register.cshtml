@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Register</h2>
+<h2>Register</h2><h3>@ViewBag.Message</h3>
 
 @using (Html.BeginForm())
 {
@@ -17,34 +17,74 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="row col-12">
-            <div class="col-9 row">
-                <div class="form-group col-8">
-                    @Html.LabelFor(model => model.LeagueName, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.LeagueName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.LeagueName, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group col-4">
-                    @Html.LabelFor(model => model.StartWeek, htmlAttributes: new { @class = "control-label" })
-                    <div>
-                        @Html.DropDownListFor(model => model.StartWeek, Enumerable.Range(Model.StartWeek, 17 - Model.StartWeek + 1).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Start Week")
+            <div class="col-lg-9">
+                <div id="LeagueInfo" class="row">
+                    @{  // Hidden Fields to retain data on post
+                        @Html.HiddenFor(m => m.CommissionerEmail);
+                        @Html.HiddenFor(m => m.CommissionerName);
+                        @Html.HiddenFor(m => m.CommissionerPlayerId);
+                        @Html.HiddenFor(m => m.LeagueRegistrationDate);
+                    }
+                    <div class="form-group col-12 col-md-6">
+                        @Html.LabelFor(model => model.LeagueName, htmlAttributes: new { @class = "control-label lead" })
+                        @Html.EditorFor(model => model.LeagueName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LeagueName, "", new { @class = "text-danger" })
                     </div>
-                    @Html.ValidationMessageFor(model => model.LeagueName, "", new { @class = "text-danger" })
+                    <div class="col-md-4 col-12 row">
+                        <div class="form-group col-6">
+                            @Html.LabelFor(model => model.StartWeek, htmlAttributes: new { @class = "control-label lead" })
+                            <div>
+                                @Html.DropDownListFor(model => model.StartWeek, Enumerable.Range(Model.StartWeek, 17 - Model.StartWeek + 1).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString(), Selected = (i == 1) }), "Start Week", new { @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.StartWeek, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-6">
+                            @Html.LabelFor(model => model.NumberOfInvitees, htmlAttributes: new { @class = "control-label lead" })
+                            <div>
+                                @Html.DropDownListFor(model => model.NumberOfInvitees, Enumerable.Range(2, 49).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), new { @class = "form-control", id = "PlayerCount" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.NumberOfInvitees, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-12">
+                        @Html.LabelFor(model => model.Invitees, htmlAttributes: new { @class = "control-label lead" })
+                    </div>
+                    <div id="Invitees" class="col-12">
+                        @for (int x = 0; x < Model.Invitees.Count; x++)
+                        {
+                            <input name="Invitees.Index" type="hidden" value="@x" />
+                            <div class="row">
+                                <div class="col-4">
+                                    @Html.EditorFor(m => m.Invitees[x].Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Player Name" } })
+                                </div>
+                                <div class="col-5">
+                                    @Html.EditorFor(m => m.Invitees[x].Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
+                                </div>
+                                <div class="col-2">
+                                    @Html.DropDownListFor(m => m.Invitees[x].NumberOfEntries, Enumerable.Range(1, 2).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString(), Selected = (i == 1) }), "Teams", new { @class = "form-control" })
+                                </div>
+                                <div class="col-1 fa fa-plus add-team"></div>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
-            <div class="col-3">
+
+            <div id="CommissionerBox" class="col-lg-3" style="background:#BBB">
                 <div class="col-12 lead text-center">Commissioner</div>
                 <div class="col-12 text-center">@Model.CommissionerName</div>
                 <div class="col-12 text-center"><a href="mailto:@Model.CommissionerEmail">@Model.CommissionerEmail</a></div>
                 <hr />
                 <div class="form-group">
                     @Html.LabelFor(model => model.LeagueNotes, htmlAttributes: new { @class = "control-label text-center col-12" })
-                        @Html.TextAreaFor(model => model.LeagueNotes, new { @class = "form-control col-12", rows = "3" })
+                    @Html.TextAreaFor(model => model.LeagueNotes, new { @class = "form-control col-12", rows = "3" })
                     @Html.ValidationMessageFor(model => model.LeagueNotes, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
-
-
         <br />
         <br />
         <br />
@@ -59,3 +99,4 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+

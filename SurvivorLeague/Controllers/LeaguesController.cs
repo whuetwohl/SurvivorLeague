@@ -32,6 +32,7 @@ namespace SurvivorLeague.Controllers
             return View(Leagues);
         }
 
+        [HttpGet]
         public ActionResult Register()
         {
             if (Session["PlayerId"] == null) return RedirectToAction("Index", "Home");
@@ -42,17 +43,49 @@ namespace SurvivorLeague.Controllers
             using (NFLLeagueEntities nfl = new NFLLeagueEntities())
             {
                 var commissioner = (from p in nfl.Players where p.ID == playerId select new { p.ID, p.FirstName, p.LastName, p.Email }).FirstOrDefault();
+                
                 leagueRegistration.CommissionerPlayerId = commissioner.ID;
                 leagueRegistration.CommissionerName = $"{ commissioner.FirstName } { commissioner.LastName[0] }.";
                 leagueRegistration.CommissionerEmail = commissioner.Email;
                 leagueRegistration.LeagueRegistrationDate = DateTime.Now;
 
                 leagueRegistration.StartWeek = nfl.SeasonSchedules.Where(s => s.DateAndTime > DateTime.Now).Select(i => i.Week).Min();
+                leagueRegistration.Invitees = new List<Invitee>() { new Invitee { Name = $"{commissioner.FirstName} {commissioner.LastName}", Email = commissioner.Email, NumberOfEntries = 2 } };
             }
 
-                return View(leagueRegistration);
+            return View(leagueRegistration);
         }
 
+        [HttpPost]
+        public ActionResult Register(LeaguesRegisterViewModel vm)
+        {
+            using (NFLLeagueEntities nfl = new NFLLeagueEntities())
+            {
+                if(nfl.Leagues.Where(l => l.Name == vm.LeagueName).Count() > 0)
+                {
+                    ViewBag.Message = "League Already Exists";
+                    return Register();
+                }
+                else
+                {
+                    NFL.League league = new NFL.League();
+                    league.Name = vm.LeagueName;
+                    league.Notes = vm.LeagueNotes;
+                    league.CommissionerPlayerID = vm.CommissionerPlayerId;
+                    league.Created = vm.LeagueRegistrationDate;
+                    nfl.Leagues.Add(league);
+                    nfl.SaveChanges();
+                    foreach(var invitee in vm.Invitees)
+                    {
+                        //nfl.LeagueInvitations.Add(new LeagueInvitation() { LeagueId = league.ID, PlayerName = invitee.Name, PlayerEmail = invitee.Email, Date = DateTime.Now });
+                    }
+                    nfl.SaveChanges();
+
+                }
+            }
+
+                return View(vm);
+        }
 
     }
 }

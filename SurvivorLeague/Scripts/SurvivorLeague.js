@@ -58,6 +58,51 @@ $(document).ready(function () {
     });
 });
 
+$("#PlayerCount").change(function () {
+    //alert($(this).val());
+});
+
+//$(".add-team").click(function () {
+//    $(this).addClass("fa-minus remove-team").removeClass("fa-plus add-team");
+//});
+
+//$(".remove-team").click(function () {
+//    $(this).addClass("fa-plus add-team").removeClass("fa-minus remove-team");
+//});
+
+$(document).on('click', '.add-team', function (e) {
+    // TODO: Put in Ajax to add the team to the VM, listing the line with a fa-minus at the end
+    // and put in similar code to update if minused
+
+    $(this).addClass("fa-minus remove-team").removeClass("fa-plus add-team");
+    let index = $('#Invitees .row').length;
+    e.preventDefault();
+    let newItem = '<input name="Invitees.Index" type="hidden" value="' + index + '" />\
+        <div class="row">\
+                <div class="col-4">\
+                    <input class="form-control text-box single-line" id="Invitees_' + index + '__Name" name="Invitees[' + index + '].Name" placeholder="Player Name" type="text" />\
+                </div>\
+                <div class="col-5">\
+                    <input class="form-control text-box single-line" data-val="true" data-val-email="The Player Email field is not a valid e-mail address." id="Invitees_' + index + '__Email" name="Invitees[' + index + '].Email" placeholder="Email" type="email" />\
+                </div>\
+                <div class="col-2">\
+                    <select class="form-control" data-val="true" data-val-number="The field Qty must be a number." data-val-required="The Qty field is required." id="Invitees_' + index + '__NumberOfEntries" name="Invitees[' + index + '].NumberOfEntries"><option value="">Teams</option>\
+                        <option value="1" selected>1</option>\
+                        <option value="2">2</option>\
+                    </select>\
+                </div>\
+                <div class="col-1 fa fa-plus add-team"></div>\
+            </div>'
+    $('#Invitees').append(newItem);
+
+
+});
+
+$(document).on('click', '.remove-team', function () {
+    //$(this).addClass("fa-plus add-team").removeClass("fa-minus remove-team");
+    $(this).parent('.row:first').remove();
+});
+
 
 //$(".NoSelection").click(function () {
 //    if (!this.classList.contains('PastGame')) {
@@ -69,5 +114,11 @@ $(document).ready(function () {
 //        //$(".NoSelection").animate({ opacity: .7 }, 'slow');
 //        alert('script in file');
 //    }
+//});
+
+//$().ready(function () {
+//    $('.dropdown').click(function () {
+//        $('.dropdown-menu').fadeToggle();
+//    });
 //});
 

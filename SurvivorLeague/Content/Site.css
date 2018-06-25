@@ -80,3 +80,29 @@ body {
 @-webkit-keyframes selectedborder {
     50% {color: white; background-color: black;}
 }
+
+.add-team {
+    margin: auto;
+    font-size: x-large;
+    color: blue;
+    cursor: pointer;
+}
+
+.remove-team {
+    margin: auto;
+    font-size: x-large;
+    color: red;
+    cursor: pointer;
+}
+
+nav, .size-indicator {
+    background: linear-gradient(to left, #EB6E1F,#002D62);
+}
+
+.dropdown-menu {
+    background: linear-gradient(to bottom, #EB6E1F,#002D62);
+}
+
+.dropdown-item {
+    color: #FFF;
+}

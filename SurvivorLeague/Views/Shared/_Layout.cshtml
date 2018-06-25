@@ -13,6 +13,7 @@
     @{ string BackColor = (Session["BackColor"] ?? "#007BFF").ToString();
         string ForeColor = (Session["ForeColor"] ?? "#f9f9f9").ToString();
     }
+
 </head>
 
 <body class="team-colors-reversed">
@@ -84,7 +85,7 @@
     </nav>
     <br />
     @* To Return ViewPort size categor *@
-    <div class="container text-center">
+    <div class="container text-center viewport-size">
         <h2 class="d-sm-none size-indicator">Extra Small</h2>
         <h2 class="d-none d-sm-block d-md-none size-indicator">Small</h2>
         <h2 class="d-none d-md-block d-lg-none size-indicator">Medium</h2>
