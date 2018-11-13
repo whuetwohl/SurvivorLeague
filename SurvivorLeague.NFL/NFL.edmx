@@ -45,9 +45,13 @@ warning 6002: The table/view 'SurvivorLeagues.nfl.LeagueSeason' does not have a 
           <Key>
             <PropertyRef Name="LeagueId" />
             <PropertyRef Name="SeasonId" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="StartWeek" />
           </Key>
           <Property Name="LeagueId" Type="int" Nullable="false" />
           <Property Name="SeasonId" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="StartWeek" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'SurvivorLeagues.nfl.PlayerLeague' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -105,6 +109,7 @@ warning 6002: The table/view 'SurvivorLeagues.nfl.SeasonSchedule' does not have 
           </Key>
           <Property Name="SeasonID" Type="int" Nullable="false" />
           <Property Name="Week" Type="int" Nullable="false" />
+          <Property Name="DateAndTime" Type="datetime" />
           <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="Time" Type="time" Precision="0" Nullable="false" />
           <Property Name="VisitorTeamID" Type="int" Nullable="false" />
@@ -331,7 +336,9 @@ warning 6002: The table/view 'SurvivorLeagues.nfl.SeasonSchedule' does not have 
           <EntitySet Name="LeagueSeason" EntityType="Self.LeagueSeason" store:Type="Tables" store:Schema="nfl">
             <DefiningQuery>SELECT 
     [LeagueSeason].[LeagueId] AS [LeagueId], 
-    [LeagueSeason].[SeasonId] AS [SeasonId]
+    [LeagueSeason].[SeasonId] AS [SeasonId], 
+    [LeagueSeason].[StartDate] AS [StartDate], 
+    [LeagueSeason].[StartWeek] AS [StartWeek]
     FROM [nfl].[LeagueSeason] AS [LeagueSeason]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="PlayerLeague" EntityType="Self.PlayerLeague" store:Type="Tables" store:Schema="nfl">
@@ -351,6 +358,7 @@ warning 6002: The table/view 'SurvivorLeagues.nfl.SeasonSchedule' does not have 
             <DefiningQuery>SELECT 
     [SeasonSchedule].[SeasonID] AS [SeasonID], 
     [SeasonSchedule].[Week] AS [Week], 
+    [SeasonSchedule].[DateAndTime] AS [DateAndTime], 
     [SeasonSchedule].[Date] AS [Date], 
     [SeasonSchedule].[Time] AS [Time], 
     [SeasonSchedule].[VisitorTeamID] AS [VisitorTeamID], 
@@ -486,9 +494,13 @@ warning 6002: The table/view 'SurvivorLeagues.nfl.SeasonSchedule' does not have 
           <Key>
             <PropertyRef Name="LeagueId" />
             <PropertyRef Name="SeasonId" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="StartWeek" />
           </Key>
           <Property Name="LeagueId" Type="Int32" Nullable="false" />
           <Property Name="SeasonId" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StartWeek" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="PlayerSelection">
           <Key>
@@ -528,6 +540,7 @@ warning 6002: The table/view 'SurvivorLeagues.nfl.SeasonSchedule' does not have 
           <NavigationProperty Name="Season" Relationship="Self.FK_SeasonSchedule_Season" FromRole="SeasonSchedule" ToRole="Season" />
           <NavigationProperty Name="Team" Relationship="Self.FK_SeasonSchedule_HomeTeams" FromRole="SeasonSchedule" ToRole="Teams" />
           <NavigationProperty Name="Team1" Relationship="Self.FK_SeasonSchedule_VisitorTeams" FromRole="SeasonSchedule" ToRole="Teams" />
+          <Property Name="DateAndTime" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_League_Players">
           <End Role="Players" Type="Self.Player" Multiplicity="1" />
@@ -833,6 +846,8 @@ warning 6002: The table/view 'SurvivorLeagues.nfl.SeasonSchedule' does not have 
           <EntitySetMapping Name="LeagueSeasons">
             <EntityTypeMapping TypeName="NFLLeagueModel.LeagueSeason">
               <MappingFragment StoreEntitySet="LeagueSeason">
+                <ScalarProperty Name="StartWeek" ColumnName="StartWeek" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
                 <ScalarProperty Name="SeasonId" ColumnName="SeasonId" />
               </MappingFragment>
@@ -852,6 +867,7 @@ warning 6002: The table/view 'SurvivorLeagues.nfl.SeasonSchedule' does not have 
           <EntitySetMapping Name="SeasonSchedules">
             <EntityTypeMapping TypeName="NFLLeagueModel.SeasonSchedule">
               <MappingFragment StoreEntitySet="SeasonSchedule">
+                <ScalarProperty Name="DateAndTime" ColumnName="DateAndTime" />
                 <ScalarProperty Name="SeasonID" ColumnName="SeasonID" />
                 <ScalarProperty Name="Week" ColumnName="Week" />
                 <ScalarProperty Name="Date" ColumnName="Date" />

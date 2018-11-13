@@ -16,5 +16,7 @@ namespace SurvivorLeague.NFL
     {
         public int LeagueId { get; set; }
         public int SeasonId { get; set; }
+        public System.DateTime StartDate { get; set; }
+        public int StartWeek { get; set; }
     }
 }

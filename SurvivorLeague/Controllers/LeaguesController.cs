@@ -29,17 +29,34 @@ namespace SurvivorLeague.Controllers
                     Leagues.Add(new PlayerLeagueViewModel() { LeagueId = league.ID, LeagueName = league.Name, LeagueType = "NFL", FavoriteTeamColors = nfl.Players.Single(p => p.ID == playerId).FavoriteTeam.Single().Colors });
                 }
             }
-
-            //using (MLBLeagueEntities mlb = new MLBLeagueEntities())
-            //{
-            //    var mlbLeagues = mlb.GetPlayerLeagues(playerId);
-            //    foreach (var league in mlbLeagues)
-            //    {
-            //        Leagues.Add(new PlayerLeagueViewModel() { LeagueId = league.ID, LeagueName = league.Name, LeagueType = "MLB", FavoriteTeamColors = mlb.Players.Single(p => p.ID == playerId).FavoriteTeam.Single().Colors });
-            //    }
-            //}
-
             return View(Leagues);
         }
+
+        public ActionResult Register()
+        {
+            if (Session["PlayerId"] == null) return RedirectToAction("Index", "Home");
+            var playerId = Convert.ToInt32(Session["PlayerId"]);
+
+            LeaguesRegisterViewModel leagueRegistration = new LeaguesRegisterViewModel();
+
+            using (NFLLeagueEntities nfl = new NFLLeagueEntities())
+            {
+                var commissioner = (from p in nfl.Players where p.ID == playerId select new { p.ID, p.FirstName, p.LastName, p.Email }).FirstOrDefault();
+                leagueRegistration.CommissionerPlayerId = commissioner.ID;
+                leagueRegistration.CommissionerName = $"{ commissioner.FirstName } { commissioner.LastName[0] }.";
+                leagueRegistration.CommissionerEmail = commissioner.Email;
+                leagueRegistration.LeagueRegistrationDate = DateTime.Now;
+
+
+                // continue here... don't get the start week correctly... sure it's something dumb that I am overlooking
+                var startWeek = (from ss in nfl.SeasonSchedules where DateTime.Compare(ss.DateAndTime, DateTime.Now) > 0 select ss.Week).Min();
+
+                while (true) ;
+            }
+
+                return View(leagueRegistration);
+        }
+
+
     }
 }

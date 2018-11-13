@@ -22,6 +22,7 @@ namespace SurvivorLeague.NFL
         public int HomeTeamID { get; set; }
         public string Location { get; set; }
         public string MatchupCode { get; set; }
+        public System.DateTime DateAndTime { get; set; }
     
         public virtual Season Season { get; set; }
         public virtual Team Team { get; set; }
